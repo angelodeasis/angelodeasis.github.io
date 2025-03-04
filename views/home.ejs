@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+</head>
+<body>
+        
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="ADETECH Logo.jpg" alt="Logo" height="40"> ADE TECH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="mailto:adetechAI@gmail.com?subject=Contact%20From%20Website">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="text-center py-5">
+        <div class="container">
+            <h1 class="tool-text-4xl bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text font-extrabold text-transparent sm:text-5xl">Convert PDF to Flashcards</h1>
+            <p class="lead">Transform your PDFs into interactive flashcards and supercharge your learning with ADE TECH.</p>
+        </div>
+    </header>
+
+    <!-- File Upload Section -->
+    <section class="text-center py-5 bg-light">
+        <div class="container">
+            <h2>Upload Your PDF</h2>
+            <p>Select a PDF to convert it into interactive flashcards. You can also drag and drop a file.</p>
+            
+            <div class="upload-box mx-auto">
+                <form id="uploader" method="post" enctype="multipart/form-data">
+                    <label for="fileInput" class="btn btn-outline-primary">Select a File</label>
+                    <input type="file" id="fileInput" name="userFile" hidden>
+                    <input type="submit" value="Submit"class="btn btn-outline-primary">
+                </form>
+                <p class="mt-2 text-muted">Your files are securely processed by ADE TECH's AI.</p>
+            </div>
+
+            <!-- <button class="btn btn-primary mt-3">Try Our Free PDF to Flashcard Generator</button> -->
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="container py-5 text-center">
+        <h2 class="mb-4">How It Works</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="circle-btn">
+                    <i class="fas fa-upload"></i>
+                </div>
+                <h4 class="mt-3">Upload your PDF</h4>
+                <p>Select and upload your study material.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="circle-btn">
+                    <i class="fas fa-robot"></i> <!-- AI Icon Fix -->
+                </div>
+                <h4 class="mt-3">AI-powered conversion</h4>
+                <p>Automatically generates flashcards from your PDF.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="circle-btn">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h4 class="mt-3">Download or study online</h4>
+                <p>Get your flashcards as CSV, PDF, or study online.</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- FAQ Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center">Frequently Asked Questions</h2>
+            <div class="accordion mt-4" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            How do I create flashcards from a PDF?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show">
+                        <div class="accordion-body">Simply upload your PDF, and our AI will generate flashcards automatically.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Is my PDF content kept private and secure?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse">
+                        <div class="accordion-body">Yes! Your files are processed securely and are never stored permanently.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <p>© 2025 ADE TECH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

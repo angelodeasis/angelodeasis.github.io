@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards | ADE TECH</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="flashcards.js"></script>
+</head>
+
+<div class="download-section text-center mt-5">
+    <button id="downloadBtn" class="btn btn-success">Download Q&A</button>
+</div>
+
+
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <img src="ADETECH Logo.jpg" alt="Logo" height="40"> ADE TECH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="mailto:adetechAI@gmail.com?subject=Contact%20From%20Website">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup">Register</a></li>
+                </ul>
+            </div>  
+        </div>
+    </nav>
+    <script>
+        let flashcards = <%- JSON.stringify(flashcards) %>;
+        console.log("Received flashcards:", flashcards);
+    </script>
+    
+
+    <!-- Flashcard Container -->
+    <div class="container text-center my-5">
+        <h1 class="mb-4">Your Flashcards</h1>
+
+        <div id="flashcard-container">
+            <% flashcards.forEach(function(card, index) { %>
+                <div class="flashcard" id="flashcard-<%= index %>">
+                    <div class="front" id="front-<%= index %>"><%= card.question %></div>
+                    <div class="back" id="back-<%= index %>"><%= card.answer %></div>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class="controls mt-4">
+            <button class="btn btn-outline-primary" id="prevButton">Previous</button>
+            <span id="currentIndex">1</span> / <span id="totalCards"><%= flashcards.length %></span>
+            <button class="btn btn-primary" id="nextButton">Next</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const downloadBtn = document.getElementById("downloadBtn");
+            let flashcards = <%- JSON.stringify(flashcards) %>;  // Get flashcard data from the backend
+    
+            downloadBtn.addEventListener("click", () => {
+                let textContent = "";
+    
+                flashcards.forEach((card, index) => {
+                    textContent += `${index + 1}. Q: ${card.question}\nA: ${card.answer}\n\n`;
+                });
+    
+                // Create a Blob (file-like object) with the text content
+                const blob = new Blob([textContent], { type: "text/plain" });
+                const url = URL.createObjectURL(blob);
+    
+                // Create a temporary link and trigger the download
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "Flashcards_Q&A.txt";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+
+    
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const flashcards = document.querySelectorAll('.flashcard');
+        let currentIndex = 0;
+        let isFlipped = false;
+
+        // Show first flashcard
+        function showFlashcard() {
+            if (flashcards.length === 0) {
+                return;
+            }
+
+            flashcards.forEach((card, index) => {
+                if (index === currentIndex) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById("currentIndex").textContent = currentIndex + 1;
+        }
+
+        // Flip the flashcard on click
+        flashcards.forEach(card => {
+            card.addEventListener("click", () => {
+                isFlipped = !isFlipped;
+                card.classList.toggle("flipped", isFlipped);
+            });
+        });
+
+        // Navigate to the next flashcard
+        document.getElementById("nextButton").addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % flashcards.length;
+            isFlipped = false;
+            showFlashcard();
+        });
+
+        // Navigate to the previous flashcard
+        document.getElementById("prevButton").addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
+            isFlipped = false;
+            showFlashcard();
+        });
+
+        showFlashcard();
+    });
+</script>
+
+</body>
+</html>
